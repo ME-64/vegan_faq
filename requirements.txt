@@ -1,2 +1,3 @@
 cdqa==1.3.9
 streamlit==0.55.0
+.ipynb_checkpoints/
