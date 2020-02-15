@@ -2,6 +2,8 @@ import streamlit as st
 import time
 import pandas as pd
 from ast import literal_eval
+import os
+
 
 from cdqa.utils.filters import filter_paragraphs
 from cdqa.utils.download import download_model, download_bnpp_data
@@ -13,15 +15,22 @@ st.subheader('Ask me anything!')
 
 user_q = st.text_input(label = '') 
 
+
+
+if os.path.exists('vegan_faq/bert_qa.joblib'):
+    pass
+else:
+    download_model('bert_qa.joblib', dir = 'vegan_faq/') 
+
 @st.cache()
 def load_data():
-    df = pd.read_csv('./vegan_qa.csv')
+    df = pd.read_csv('vegan_faq/vegan_qa.csv')
     df['paragraphs'] = df['paragraphs'].str.split('\n')
     df = filter_paragraphs(df, min_length = 5, drop_empty = False)
     return df
 
 def load_model(df):
-    cdqa_pipeline = QAPipeline(reader='./bert_qa.joblib')
+    cdqa_pipeline = QAPipeline(reader='vegan_faq/bert_qa.joblib')
     cdqa_pipeline.fit_retriever(df)
     return cdqa_pipeline
 
@@ -38,7 +47,6 @@ elif len(user_q.split())  < 3:
 else:
     with st.spinner('Loading Answer'):
         prediction = cdqa_pipeline.predict(user_q)
-        st.balloons()
         st.success('Answer Found!')
         time.sleep(1)
         st.success('Answer: ' + prediction[0])
