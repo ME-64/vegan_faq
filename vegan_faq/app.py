@@ -17,10 +17,6 @@ user_q = st.text_input(label = '')
 
 
 
-#if os.path.exists('vegan_faq/bert_qa.joblib'):
-#    pass
-#else:
-#    download_model('bert_qa.joblib', dir = 'vegan_faq/') 
 
 @st.cache()
 def load_data():
