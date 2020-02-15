@@ -17,10 +17,10 @@ user_q = st.text_input(label = '')
 
 
 
-if os.path.exists('vegan_faq/bert_qa.joblib'):
-    pass
-else:
-    download_model('bert_qa.joblib', dir = 'vegan_faq/') 
+#if os.path.exists('vegan_faq/bert_qa.joblib'):
+#    pass
+#else:
+#    download_model('bert_qa.joblib', dir = 'vegan_faq/') 
 
 @st.cache()
 def load_data():
@@ -29,6 +29,7 @@ def load_data():
     df = filter_paragraphs(df, min_length = 5, drop_empty = False)
     return df
 
+@st.cache(hash_funcs = {QAPipeline: QAPipeline.__hash__})
 def load_model(df):
     cdqa_pipeline = QAPipeline(reader='vegan_faq/bert_qa.joblib')
     cdqa_pipeline.fit_retriever(df)
