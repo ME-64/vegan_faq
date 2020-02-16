@@ -10,7 +10,7 @@ from home import Home
 from about import About
 
 navigation = st.selectbox('Navigation:', ('Home', 'About'))
-st.markdown('## ***The Suprisingly* Educated Vegan Bot** :green_book:')
+st.markdown('## ***The Suprisingly* Educated VeganBot** :green_book:')
 
 
 if navigation == 'Home':

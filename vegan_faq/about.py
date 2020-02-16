@@ -6,7 +6,7 @@ def About():
     """
     ***
     ## What is SEV?
-    **SEV** ( The 'Suprisingly Educated Vegan Bot') that tries to answer your *veganism related* questions!
+    **SEV** ( The 'Suprisingly Educated VeganBot') is a question-answering bot that tries to answer your *veganism related* questions!
     
     
     ## How does SEV work?    
@@ -19,7 +19,13 @@ def About():
     SEV's knowledge bank was curated from various sources such as: reddit, wikipedia, bbc news, & vegan related websites.
     The set of questions & answers is quality controlled to ensure the responses accurately represent veganism!
     
-
+    ***
+    
+    [![github][1]][2]
+    
+    [1]:  https://img.shields.io/static/v1?label=github&message=vegan_faq&color=informational&logo=github
+    [2]:  https://www.github.com/ME-64/vegan_faq
+    
     """
     
     
