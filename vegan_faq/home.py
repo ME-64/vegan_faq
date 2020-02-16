@@ -25,10 +25,11 @@ def Home():
     
     st.markdown('\n\n')
     
-    imgs = utils.load_images()
-    r = random.randint(0,16)
+    img = utils.get_image_url()
+    caption = 'Photo by [' + img[1] + ']('+ img[2] + ') on [Unsplash](https://www.unsplash.com)' 
     
-    st.image(imgs[r], use_column_width=True, caption = 'Photos sourced from unsplash.com vegan collection')
+    st.image(img[0], use_column_width=True)
+    st.markdown(caption)
     
     
     df = utils.load_data()
@@ -73,7 +74,7 @@ def Home():
         pass
     
     elif len(user_q.split())  < 3:
-        st.info('Your question must be more than 3 words')
+        ans.info('Your question must be more than 3 words')
     
     else:
         with st.spinner('Loading Answer'):

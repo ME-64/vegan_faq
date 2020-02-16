@@ -7,10 +7,11 @@ import numpy as np
 import pandas as pd
 import random
 from PIL import Image
+import requests
 
 @st.cache()
 def load_data():
-    df = pd.read_csv('vegan_faq/data/vegan_answer_tf.csv')
+    df = pd.read_csv('vegan_faq/data/vegan_answer_tf2.csv')
     #df = df.loc[df['title'].str[-1] == '?']
     #df.drop('Unnamed: 0', axis = 1, inplace=True)
     return df
@@ -50,4 +51,16 @@ def load_images():
         img = Image.open(path)
         imgs.append(img)
     return imgs
-    
+
+
+def get_image_url():
+    access_key = 'xHH2-pjbPYRwAYLjJ1-1SpdduOIvOd20F_ZR8NLAv_k'
+    url = 'https://api.unsplash.com/photos/random/?'
+    collection_id = '4224326'
+    orientation = 'landscape'
+    req_url = url + 'client_id=' + access_key + '&orientation=' + orientation + '&collections=' + collection_id
+    req = requests.get(req_url).json()
+    photo_link = req['urls']['regular']
+    creator = req['user']['name']
+    creator_link = req['user']['links']['html']
+    return photo_link, creator, creator_link
