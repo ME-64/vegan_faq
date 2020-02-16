@@ -1,3 +1,4 @@
+vegan_faq/model/
 env/
 *.joblib
 .ipynb_checkpoints/
@@ -5,4 +6,4 @@ ipynb_checkpoints
 /ipynb_checkpoints
 .ipynb_checkpoints/*
 .env
-vegan_faq/model//
+__pycache__/
