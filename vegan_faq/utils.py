@@ -5,6 +5,8 @@ import os
 import tensorflow as tf
 import numpy as np
 import pandas as pd
+import random
+from PIL import Image
 
 @st.cache()
 def load_data():
@@ -40,4 +42,12 @@ def comp_q(question, df, model):
             f_a = df.loc[df['title'] == q, 'paragraphs']
     return similarity, f_q, f_a
 
-
+@st.cache(show_spinner=False, allow_output_mutation=True)
+def load_images():
+    imgs = []    
+    for i in range(17):
+        path = 'vegan_faq/static/img_' + str(i) + '.jpg'
+        img = Image.open(path)
+        imgs.append(img)
+    return imgs
+    

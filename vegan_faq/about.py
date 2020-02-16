@@ -10,8 +10,8 @@ def About():
     
     
     ## How does SEV work?    
-    SEV tries to match your question to a store of collected questions and answers - and then treturn the most relevant response.
-    SEV is a closed domain Q-A bot, and thus if the answer is not found in one of SEV's corpora, he will have a hard time answering
+    SEV tries to match your question to its stored knowledge bank - and then return the most relevant response.
+    SEV is a 'closed domain' QA bot, and thus if the answer is not found in one of SEV's corpora, he will have a hard time answering
     the question!
 
     
@@ -22,9 +22,14 @@ def About():
     ***
     
     [![github][1]][2]
+    [![email][3]][4]
+     ![version][5]
     
     [1]:  https://img.shields.io/static/v1?label=github&message=vegan_faq&color=informational&logo=github
     [2]:  https://www.github.com/ME-64/vegan_faq
+    [3]:  https://img.shields.io/static/v1?label=contact&message=miloelliott64@gmail.com&color=green&logo=gmail
+    [4]:  mailto:miloelliott64@gmail.com
+    [5]:  https://img.shields.io/static/v1?label=version&message=Proof%20of%20Concept&color=red
     
     """
     
