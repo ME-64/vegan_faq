@@ -39,7 +39,7 @@ def comp_q(question, df):
 
 @st.cache()
 def load_data():
-    df = pd.read_csv('vegan_faq/vegan_answer_tf.csv')
+    df = pd.read_csv('vegan_faq/data/vegan_answer_tf.csv')
     #df = df.loc[df['title'].str[-1] == '?']
     #df.drop('Unnamed: 0', axis = 1, inplace=True)
     return df
