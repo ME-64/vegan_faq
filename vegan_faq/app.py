@@ -3,37 +3,60 @@ import time
 import pandas as pd
 from ast import literal_eval
 import os
+import tensorflow as tf
+import numpy as np
+import pandas as pd
 
-
-from cdqa.utils.filters import filter_paragraphs
-from cdqa.utils.download import download_model, download_bnpp_data
-from cdqa.pipeline.cdqa_sklearn import QAPipeline
 
 st.title('SEV - ')
 st.title('The Suprisingly Educated Vegan Bot')
 st.subheader('Ask me anything!')
 
-user_q = st.text_input(label = '') 
+place = st.empty()
+user_q = place.text_input(label = '') 
 
 
+def get_sim(qo, qt):
+    qs = [qo, qt]
+    embed = model(qs)
+    sim = np.inner(embed, embed)
+    sim = sim[0][1]
+    return sim
 
+def comp_q(question, df):
+    pot_q = df['title']
+    pot_a = df['paragraphs']
+    similarity = 0
+    f_q = ''
+    f_a = ''
+    for q in pot_q:
+        tmp = get_sim(question, q)
+        if tmp > similarity:
+            similarity = tmp
+            f_q = q
+            f_a = df.loc[df['title'] == q, 'paragraphs']
+    return similarity, f_q, f_a
 
-#@st.cache()
+@st.cache()
 def load_data():
-    df = pd.read_csv('vegan_faq/vegan_qa.csv')
-    df['paragraphs'] = df['paragraphs'].str.split('\n')
-    df = filter_paragraphs(df, min_length = 5, drop_empty = False)
+    df = pd.read_csv('vegan_faq/vegan_answer_tf.csv')
+    #df = df.loc[df['title'].str[-1] == '?']
+    #df.drop('Unnamed: 0', axis = 1, inplace=True)
     return df
 
 #@st.cache(hash_funcs = {QAPipeline: QAPipeline.__hash__})
-def load_model(df):
-    cdqa_pipeline = QAPipeline(reader='vegan_faq/bert_qa.joblib')
-    cdqa_pipeline.fit_retriever(df)
-    return cdqa_pipeline
+#def load_model(df):
+#    cdqa_pipeline = QAPipeline(reader='vegan_faq/bert_qa.joblib')
+#    cdqa_pipeline.fit_retriever(df)
+#    return cdqa_pipeline
+
+@st.cache(allow_output_mutation=True)
+def load_model():
+    return tf.saved_model.load('vegan_faq/model')
 
 
 df = load_data()
-cdqa_pipeline = load_model(df)
+model = load_model()
 
 if user_q == '':
     pass
@@ -43,13 +66,11 @@ elif len(user_q.split())  < 3:
 
 else:
     with st.spinner('Loading Answer'):
-        prediction = cdqa_pipeline.predict(user_q)
-        st.success('Answer Found!')
-        time.sleep(1)
-        st.success('Answer: ' + prediction[0])
-        st.success('Context: ' + prediction[2])
-
-
-
-
-
+        prediction = comp_q(user_q, df)
+        st.success(
+            '**Question**\n\n' +
+            user_q + '\n\n'
+            '**Answer**\n\n' + prediction[2].reset_index(drop=True)[0])
+        st.info('Identified Question: ' + prediction[1] + '\n\nConfidence = ' + str(prediction[0]))
+        
+        
