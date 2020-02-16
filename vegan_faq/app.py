@@ -9,8 +9,16 @@ import utils
 from home import Home
 from about import About
 
-navigation = st.selectbox('Navigation:', ('Home', 'About'))
-st.markdown('## ***The Suprisingly* Educated VeganBot** :green_book:')
+
+
+#navigation = st.empty()
+st.title(
+''':recycle: :recycle: :recycle: :recycle: :recycle: :recycle: :recycle: :recycle: :recycle: :recycle: :recycle: :recycle: :recycle: :recycle: '''
+)
+
+st.title('The **S**uprisingly **E**ducated **V**eganBot')
+
+navigation = st.sidebar.selectbox('Navigation:', ('Home', 'About'))
 
 
 if navigation == 'Home':
@@ -18,4 +26,5 @@ if navigation == 'Home':
     
 elif navigation == 'About':
     About()
+
 
