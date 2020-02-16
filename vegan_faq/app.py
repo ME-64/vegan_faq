@@ -18,14 +18,14 @@ user_q = st.text_input(label = '')
 
 
 
-@st.cache()
+#@st.cache()
 def load_data():
     df = pd.read_csv('vegan_faq/vegan_qa.csv')
     df['paragraphs'] = df['paragraphs'].str.split('\n')
     df = filter_paragraphs(df, min_length = 5, drop_empty = False)
     return df
 
-@st.cache(hash_funcs = {QAPipeline: QAPipeline.__hash__})
+#@st.cache(hash_funcs = {QAPipeline: QAPipeline.__hash__})
 def load_model(df):
     cdqa_pipeline = QAPipeline(reader='vegan_faq/bert_qa.joblib')
     cdqa_pipeline.fit_retriever(df)
