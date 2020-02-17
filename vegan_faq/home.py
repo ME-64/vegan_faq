@@ -71,7 +71,12 @@ def Home():
     )
     
     if user_q == '':
-        pass
+        ans.info('Here\'s some questions to get your started!\n'
+                 ' - How many vegans are there?\n'
+                 ' - Why do people choose veganism?\n'
+                 ' - What are the benefits of veganism?\n'
+                 ' - What do vegans even eat?\n'
+                )
     
     elif len(user_q.split())  < 3:
         ans.info('Your question must be more than 3 words')
