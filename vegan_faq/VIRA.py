@@ -10,8 +10,7 @@ from home import Home
 from about import About
 
 
-
-st.title('The **S**uprisingly **E**ducated **V**eganBot')
+st.image('vegan_faq/static/vira_logo.png', use_column_width = True)
 
 #navigation = st.sidebar.selectbox('Navigation:', ('Home', 'About'))
 # removing navigation feature until streamlit handles it better on mobile
