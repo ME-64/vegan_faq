@@ -62,17 +62,6 @@ def get_image_url():
 
 
 
-suggested_questions = ['Does it actually make a difference if I go vegan?',
-                           'Do plants feel pain?',
-                           'What do vegans think of palm oil?',
-                           'Don\'t zoos help protect endangered species?',
-                           'If you were stuck on a desert island with just meat, would you eat it?',
-                           'What\'s wrong with milking cows?',
-                           'Can fish really feel pain like other animals?',
-                           'I\'m an athlete, can i go vegan?',
-                           'Would you eat road kill?',
-                           'Is tattoo ink vegan?',
-                           'Is animal testing bad if it benefits humans?']
 
 def select_random_questions(questions):
     q1 = random.choice(questions)
