@@ -2,7 +2,7 @@
 ## Vegan Information Retrieval Assistant
 VIRA is a bot designed to accurately answer veganism questions!
 
-![VIRA Screenshot]("https://github.com/ME-64/VIRA/blob/develop/vegan_faq/static/site_screenshot.png" "VIRA Screenshot")
+![VIRA Screenshot](/vegan_faq/static/VIRA_screenshot.png)
 
 
 Click [here](http://134.209.190.239:8501/) to try her out!
