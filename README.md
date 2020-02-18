@@ -1,6 +1,5 @@
-# VIRA
-## Vegan Information Retrieval Assistant
-VIRA is a bot designed to accurately answer veganism questions!
+# VIRA - Vegan Information Retrieval Assistant
+#### VIRA is a bot designed to accurately answer veganism questions!
 
 <p align="center">
   <img height="500" src="/vegan_faq/static/site_screenshot.png">
