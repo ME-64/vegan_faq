@@ -1,13 +1,16 @@
-import streamlit as st
 import time
-import pandas as pd
 import os
+import random
+
+import streamlit as st
+import pandas as pd
 import tensorflow as tf
 import numpy as np
 import pandas as pd
-import random
 from PIL import Image
 import requests
+
+
 
 @st.cache()
 def load_data():
@@ -43,15 +46,6 @@ def comp_q(question, df, model):
             f_a = df.loc[df['title'] == q, 'paragraphs']
     return similarity, f_q, f_a
 
-@st.cache(show_spinner=False, allow_output_mutation=True)
-def load_images():
-    imgs = []    
-    for i in range(17):
-        path = 'vegan_faq/static/img_' + str(i) + '.jpg'
-        img = Image.open(path)
-        imgs.append(img)
-    return imgs
-
 
 def get_image_url():
     access_key = 'xHH2-pjbPYRwAYLjJ1-1SpdduOIvOd20F_ZR8NLAv_k'
@@ -64,3 +58,29 @@ def get_image_url():
     creator = req['user']['name']
     creator_link = req['user']['links']['html']
     return photo_link, creator, creator_link
+
+
+
+
+suggested_questions = ['Does it actually make a difference if I go vegan?',
+                           'Do plants feel pain?',
+                           'What do vegans think of palm oil?',
+                           'Don\'t zoos help protect endangered species?',
+                           'If you were stuck on a desert island with just meat, would you eat it?',
+                           'What\'s wrong with milking cows?',
+                           'Can fish really feel pain like other animals?',
+                           'I\'m an athlete, can i go vegan?',
+                           'Would you eat road kill?',
+                           'Is tattoo ink vegan?',
+                           'Is animal testing bad if it benefits humans?']
+
+def select_random_questions(questions):
+    q1 = random.choice(questions)
+    questions.remove(q1)
+    q2 = random.choice(questions)
+    questions.remove(q2)
+    q3 = random.choice(questions)
+    questions.remove(q3)
+    q4 = random.choice(questions)
+    return q1, q2, q3, q4
+
