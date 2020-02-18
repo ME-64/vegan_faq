@@ -90,7 +90,7 @@ def Home():
 
 
 
-suggested_questions = ['Does it actually make a difference if I go vegan?',
+    suggested_questions = ['Does it actually make a difference if I go vegan?',
                            'Do plants feel pain?',
                            'What do vegans think of palm oil?',
                            'Don\'t zoos help protect endangered species?',
